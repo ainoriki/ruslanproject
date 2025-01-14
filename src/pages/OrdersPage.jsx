@@ -8,7 +8,8 @@ import {Typography } from 'antd';
 import Nav from '../components/Menu';
 import { Button, Flex } from 'antd';    
 import { StrikethroughOutlined } from '@ant-design/icons'; 
-import { useCartStore } from '../store/Store';
+import { useNavigate } from 'react-router-dom';
+import Order from '../components/Order';
 
 
 const { Text, Link } = Typography;
@@ -17,10 +18,9 @@ const { Meta } = Card;
 
 const OrdersPage = () => {
 
+    const navigate = useNavigate()
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
-    const {addItemsToCart} = useCartStore();
-    console.log("addtocart", addItemsToCart)
 
 
 
@@ -39,9 +39,7 @@ const OrdersPage = () => {
         return <p>Загрузка...</p>; // Пока данные не загружены
       }
 
-      const onAddToCart = (item) => {
-        addItemsToCart(item)
-    }
+  
     return ( 
         <>
            <Row justify='center' style={{minHeight:'100vh'}} className='main'>
@@ -67,25 +65,14 @@ const OrdersPage = () => {
                 <div className='home-page__items'>
                 {items.map((item) => {
                     return(
-                        <div className='items-card'>
-                            <Card
-                            hoverable
-                            style={{ width: 240, background:'transparent', border:'none', background:'#fff'}}
-                            cover={<img src={item.image} style={{width:'100px', height:'100px', background:'transparent', margin:'0 auto'}}/>}
-                        >
-                            <div className='card-inner'>
-                                <Meta title={item.title} description={item.category} />
-                                <Text>{item.price}<StrikethroughOutlined /></Text>
-                                
-                                <Button type="primary" onClick={() => onAddToCart(item)}>Add to cart</Button>
-                            </div>
-                        </Card>
-                      </div>
-                )}
+                            <Order
+                                title={item.title}
+                                category={item.category}
+                                image={item.image}
+                            />
+                    )}
                 )}
                 </div>
-
-               
             </div>
         </Col>
         </Row>

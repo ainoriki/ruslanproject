@@ -11,11 +11,16 @@ import { persist } from "zustand/middleware";
         )
     );
 
-export const useCartStore = create((set, get) => ({
-        cartItems:[],
-        
-        addItemsToCart: (item) => {
-            set({cartItems: [...get().cartItems, {...item, quantity: 1}]});
+export const useCartStore = create(
+    persist(
+        (set) => ({
+            cartItems: [],
+            addItemsToCart:(item) => 
+                set((state) => ({cartItems: [...state.cartItems, item]})),
+        }),
+        {
+            name:'cart-storage',
         }
-    }));
+    )
+)
 export default useAuthStore

@@ -1,15 +1,20 @@
 import { Row, Col } from 'antd';
+import '../App.css';
+import { Button, Flex } from 'antd';
 import {Typography } from 'antd';
 import Nav from '../components/Menu';
 import OrdersPage from './OrdersPage';
 import { useCartStore } from '../store/Store';
 import { useEffect } from 'react';
+import Order from '../components/Order';
+
 
 const { Text, Link } = Typography;
 
 const CartPage = () => {
 
     const {cartItems} = useCartStore()
+    console.log("cartItems", cartItems)
 
     useEffect(() => {
         console.log("Cart items:", cartItems); // Вывод текущего состояния корзины
@@ -40,15 +45,27 @@ const CartPage = () => {
                 <Text style={{color:'#fff', textAlign:'center', fontSize:'20px',fontWeight:'700', display:'flex', justifyContent:'center', marginTop:'30px' }}>Cart is empty</Text>  
               )}
 
-            {cartItems.length >= 1 && (
-                <div>
+            {cartItems.length > 0 && (
+                <div className='home-page__items'>
                     {cartItems.map((item) => {
-                        return(
-                            <p>{item.title}</p>
-                        )
+                      return(
+
+                        <Order 
+                          id={item.id}
+                          title={item.title}
+                          category={item.category}
+                         />
+                      )
+                        
                     })}
+                     <div>
+                        <Button type="primary">Оформить заказ</Button>
+                      </div>
                 </div>
+                
             )}
+
+           
 
 
               </div>
