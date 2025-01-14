@@ -1,0 +1,66 @@
+/* main */
+
+.main{
+  /* background-color: antiquewhite; */
+}
+.main-container{
+  max-width: 393px;
+  border-radius: 20px;
+  margin: 30px auto;
+  min-height:852px;
+  width:100%;
+  box-sizing: border-box;
+
+}
+.content {
+  padding: 20px; /* Отступы внутри контейнера */
+}
+
+.home-page{
+  object-fit: cover;
+  object-position: center;
+  background-image: url('./assets/moun2.jpg');
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  height: 100vh;
+  opacity: 80%;
+  position: relative;
+}
+
+.home-page__inner{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.text{
+  margin: 20px;
+}
+
+.home-page__logo{
+  box-shadow: 15px 12px 8px 0px rgba(34, 60, 80, 0.2);;
+  background-color: #fff;
+}
+.home-page__items{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.items-card{
+  display: flex;
+  flex-direction: column;
+  gap:'20px'
+}
+.card-inner{
+  display: flex;
+  flex-direction: column;
+  gap:'30px'
+}
+
+.home-page__form{
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
